@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+    <!-- log-format -->
+    <property name="CONSOLE_LOG_PATTERN"
+              value="%white(%d{yyyy-MM-dd HH:mm:ss.SSS, Asia/Shanghai}) %green([%thread]) %highlight(%-5level) %boldMagenta(%logger{1}\:%line) - %white(%msg%n)"/>
+
+    <include resource="logback-common.xml"/>
+
+    <!-- CONSOLE -->
+    <appender name="SYNC_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <!-- coding -->
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset class="java.nio.charset.Charset">${DEFAULT_CHARSET}</charset>
+        </encoder>
+    </appender>
+
+    <appender name="ASYNC_CONSOLE" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="SYNC_CONSOLE"/>
+        <queueSize>${DEFAULT_QUEUE_SIZE}</queueSize>
+        <maxFlushTime>${DEFAULT_FLUSH_TIME}</maxFlushTime>
+        <includeCallerData>${DEFAULT_INCLUDE_CALLER_DATA}</includeCallerData>
+    </appender>
+
+    <appender name="ASYNC_SQL_CONSOLE" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="SYNC_CONSOLE"/>
+        <queueSize>${DEFAULT_QUEUE_SIZE}</queueSize>
+        <maxFlushTime>${DEFAULT_FLUSH_TIME}</maxFlushTime>
+        <includeCallerData>${DEFAULT_INCLUDE_CALLER_DATA}</includeCallerData>
+        <filter class="com.example.democommon.filter.LogbackDruidSqlFilter"/>
+    </appender>
+
+    <logger name="druid.sql.Statement" level="debug" additivity="false">
+        <appender-ref ref="ASYNC_SQL_CONSOLE"/>
+    </logger>
+    <!-- log-level -->
+    <root level="INFO">
+        <appender-ref ref="ASYNC_CONSOLE" />
+    </root>
+</configuration>

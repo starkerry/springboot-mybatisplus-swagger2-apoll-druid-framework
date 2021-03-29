@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+    <property name="DEFAULT_CHARSET" value="UTF-8"/>
+    <property name="DEFAULT_QUEUE_SIZE" value="2000"/>
+    <property name="DEFAULT_FLUSH_TIME" value="1000"/>
+    <property name="DEFAULT_MAX_HISTORY" value="3"/>
+    <property name="DEFAULT_INCLUDE_CALLER_DATA" value="true"/>
+
+    <springProperty scope="context" name="springAppName" source="spring.application.name" />
+
+</included>
