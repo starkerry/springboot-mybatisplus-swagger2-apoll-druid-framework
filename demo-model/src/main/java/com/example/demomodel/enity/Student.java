@@ -25,4 +25,7 @@ public class Student extends BaseEntity {
     @ApiModelProperty(value = "student name")
     private String studentName;
 
+    private String address;
+
+
 }
