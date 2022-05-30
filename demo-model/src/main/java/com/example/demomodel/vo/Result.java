@@ -35,5 +35,7 @@ public class Result<T> implements Serializable {
     private String msgInfo;
 
     private String test;
+
+    private String name;
     // you can also create your own constructors
 }
