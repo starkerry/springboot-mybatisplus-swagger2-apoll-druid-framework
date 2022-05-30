@@ -30,5 +30,6 @@ public class Result<T> implements Serializable {
         this.status = status;
     }
 
+    private String errorInfo;
     // you can also create your own constructors
 }
